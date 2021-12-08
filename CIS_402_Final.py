@@ -8,13 +8,20 @@ mydb = mysql.connector.connect(
 )
 
 mycursor = mydb.cursor()
+#Step 23
+mycursor.execute("SELECT COUNT(*) FROM pet")
+NumOfPets = mycursor.fetchone()[0]
 
-mycursor.execute("SELECT name, birth FROM pet")
+print("You have", NumOfPets + 1, "pets.")
+#Step 21
+#mycursor = mydb.cursor()
 
-myresult = mycursor.fetchall()
+#mycursor.execute("SELECT name, birth FROM pet")
 
-for x in myresult:
-  print(x)
+#myresult = mycursor.fetchall()
+
+#for x in myresult:
+#  print(x)
 #Step 18
 #mycursor = mydb.cursor()
 #sql = "SELECT * FROM pet WHERE sex ='f'"
