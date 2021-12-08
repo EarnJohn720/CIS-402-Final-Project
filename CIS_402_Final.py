@@ -1,3 +1,4 @@
+import re
 import mysql.connector
 
 mydb = mysql.connector.connect(
@@ -7,12 +8,44 @@ mydb = mysql.connector.connect(
   database="menagerie"
 )
 
+pet_names = []
+birth_dates = []
 mycursor = mydb.cursor()
-#Step 23
-mycursor.execute("SELECT COUNT(*) FROM pet")
-NumOfPets = mycursor.fetchone()[0]
+mycursor.execute("SELECT name FROM pet")
+myresult = mycursor.fetchall()
+#re.search('[a-zA-Z]', the_string)
+for x in myresult:
+    pet_names.append(str(x))
 
-print("You have", NumOfPets + 1, "pets.")
+mycursor.execute("SELECT birth FROM pet")
+myresult = mycursor.fetchall()
+for x in myresult:
+    birth_dates.append(str(x))
+mycursor.execute("SELECT COUNT(*) FROM pet")
+NumOfPets = int(mycursor.fetchone()[0])
+
+print("Names                     Birth Date")
+print("------------------------------------")
+#"{:<15}{:^10}{:>15}".format(left_aligned, center, right_aligned)
+for x in range(NumOfPets):
+   print("{:<18}{:>18}".format(pet_names[x], birth_dates[x]))
+#temp = ''
+#temp2 = ''
+#pets = []
+#for x in pet_names:
+#    temp = x
+#    for y in temp:
+#        if y.isalpha() == True:
+#            temp2 += y
+#    pets.append(temp2)
+#    temp2 = ''
+
+
+#Step 23
+#mycursor.execute("SELECT COUNT(*) FROM pet")
+#NumOfPets = mycursor.fetchone()[0]
+
+#print("You have", NumOfPets + 1, "pets.")
 #Step 21
 #mycursor = mydb.cursor()
 
