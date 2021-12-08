@@ -9,6 +9,24 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
+mycursor.execute("SELECT name, birth FROM pet")
+
+myresult = mycursor.fetchall()
+
+for x in myresult:
+  print(x)
+#Step 18
+#mycursor = mydb.cursor()
+#sql = "SELECT * FROM pet WHERE sex ='f'"
+
+#mycursor.execute(sql)
+
+#myresult = mycursor.fetchall()
+
+#for x in myresult:
+#  print(x)
+
+
 #mycursor.execute("CREATE DATABASE menagerie")
 #mycursor.execute("DROP DATABASE menagerie")
 #mycursor.execute("SHOW DATABASES")
@@ -19,27 +37,27 @@ mycursor = mydb.cursor()
 #mycursor.execute("DESCRIBE pet")
 #for x in mycursor:
 #  print(x)
+#Step 14
+#sql = "INSERT INTO pet (name, owner, species, sex, birth, death) VALUES (%s, %s, %s, %s, %s, %s)"
+#val = [
+#  ('Fluffy', 'Harold', 'cat', 'f', '1993-02-04', None),
+#  ('Claws', 'Gwen', 'cat', 'm', '1994-03-17', None),
+#  ('Buffy', 'Harold', 'dog', 'f', '1989-05-13', None),
+#  ('Fang', 'Benny', 'dog', 'm', '1990-08-27', None),
+#  ('Bowser', 'Diane', 'dog', 'm', '1979-08-31', '1995-07-29'),
+#  ('Chirpy', 'Gwen', 'bird', 'f', '1998-09-11', None),
+#  ('Whistler', 'Gwen', 'bird', None, '1997-12-09', None),
+#  ('Slim', 'Benny', 'snake', 'm', '1996-04-29', None)
+#]
 
-sql = "INSERT INTO pet (name, owner, species, sex, birth, death) VALUES (%s, %s, %s, %s, %s, %s)"
-val = [
-  ('Fluffy', 'Harold', 'cat', 'f', '1993-02-04', None),
-  ('Claws', 'Gwen', 'cat', 'm', '1994-03-17', None),
-  ('Buffy', 'Harold', 'dog', 'f', '1989-05-13', None),
-  ('Fang', 'Benny', 'dog', 'm', '1990-08-27', None),
-  ('Bowser', 'Diane', 'dog', 'm', '1979-08-31', '1995-07-29'),
-  ('Chirpy', 'Gwen', 'bird', 'f', '1998-09-11', None),
-  ('Whistler', 'Gwen', 'bird', None, '1997-12-09', None),
-  ('Slim', 'Benny', 'snake', 'm', '1996-04-29', None)
-]
+#mycursor.executemany(sql, val)
 
-mycursor.executemany(sql, val)
+#mydb.commit()
+#print(mycursor.rowcount, "was inserted.")
 
-mydb.commit()
-print(mycursor.rowcount, "was inserted.")
+#mycursor.execute("SELECT * FROM pet")
 
-mycursor.execute("SELECT * FROM pet")
+#myresult = mycursor.fetchall()
 
-myresult = mycursor.fetchall()
-
-for x in myresult:
-  print(x)
+#for x in myresult:
+#  print(x)
